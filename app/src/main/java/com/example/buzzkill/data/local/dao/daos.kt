@@ -23,13 +23,13 @@ interface rulesDao{
     suspend fun getRulesByID(id: Long): rules?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertRule(rule: rules): Long
+    suspend fun insertRules(rule: rules): Long
 
     @Update
     suspend fun updateRules(rule: rules)
 
     @Delete
-    suspend fun deleteRule(rule: rules)
+    suspend fun deleteRules(rule: rules)
 
     @Query("UPDATE rules SET isEnabled = :enabled WHERE id = :id")
     suspend fun setRuleEnabled(id: Long , enabled: Boolean)
