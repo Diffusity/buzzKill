@@ -8,7 +8,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.buzzkill.ui.screens.history.historyScreen
 import com.example.buzzkill.ui.screens.home.homeScreen
+import com.example.buzzkill.ui.screens.ruleBuilder.ruleBuilderScreen
+import com.example.buzzkill.ui.screens.setting.settingsScreen
 
 sealed class screen(val route: String){
     object home: screen("home")
@@ -61,7 +64,7 @@ fun navGraph(navController: NavHostController = rememberNavController()){
         }
 
         composable(screen.setting.route) {
-            settingScreen(
+            settingsScreen(
                 onNavigateBack = { navController.popBackStack() }
             )
         }
