@@ -6,7 +6,7 @@ import androidx.work.Configuration
 import androidx.work.WorkerFactory
 import dagger.hilt.android.HiltAndroidApp
 import dagger.hilt.android.qualifiers.ApplicationContext
-import jakarta.inject.Inject
+import javax.inject.Inject
 
 @HiltAndroidApp
 class BuzzKillApp: Application(), Configuration.Provider{

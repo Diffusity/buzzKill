@@ -8,7 +8,7 @@ import com.example.buzzkill.domain.usecase.deleteRuleUseCase
 import com.example.buzzkill.domain.usecase.getALlRulesUseCase
 import com.example.buzzkill.domain.usecase.toggleRuleUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import jakarta.inject.Inject
+import javax.inject.Inject
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
@@ -16,38 +16,38 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 sealed class homeUiState{
-    object loading: homeUiState()
+    object Loading: homeUiState()
     data class Success(val rules: List<notificationRules>): homeUiState()
-    object empty: homeUiState()
+    object Empty: homeUiState()
 }
 
 @HiltViewModel
 class homeViewModel @Inject constructor(
     private val getAllRules: getALlRulesUseCase,
-    private val toggleRule: toggleRuleUseCase,
-    private val deleteRule: deleteRuleUseCase
+    private val toggleRuleUseCase: toggleRuleUseCase,
+    private val deleteRuleUseCase: deleteRuleUseCase
 ): ViewModel(){
     val uiState: StateFlow<homeUiState> = getAllRules().map { rules ->
         if (rules.isEmpty()) {
-            homeUiState.empty
+            homeUiState.Empty
         } else {
             homeUiState.Success(rules)
         }
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5_000),
-        initialValue = homeUiState.loading
+        initialValue = homeUiState.Loading
     )
 
     fun onToggleRule(ruleID: Long , enabled: Boolean){
         viewModelScope.launch {
-            toggleRule(ruleID , enabled)
+            toggleRuleUseCase.invoke(ruleID , enabled)
         }
     }
 
     fun onDeleteRule(rule: notificationRules){
         viewModelScope.launch {
-            deleteRule(rule)
+            deleteRuleUseCase.invoke(rule)
         }
     }
 }

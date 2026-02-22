@@ -9,6 +9,7 @@ enum class ruleActions(val label: String){
     CUSTOM_SOUND("customSound"),
     VIBRATE("customVibrate"),
     SILENT("silent"),
+//    AUTO_REPLY("autoReply"),
     NONE("passThrough")
 }
 

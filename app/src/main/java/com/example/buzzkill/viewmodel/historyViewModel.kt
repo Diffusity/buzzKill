@@ -6,19 +6,21 @@ import com.example.buzzkill.domain.model.notificationLogs
 import com.example.buzzkill.domain.usecase.clearLogsUseCase
 import com.example.buzzkill.domain.usecase.getNotificationLogsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import jakarta.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class historyViewModel @Inject constructor(
     private val getLogs: getNotificationLogsUseCase,
-    private val clearLogs: clearLogsUseCase
-): ViewModel(){
+    private val clearLogsUseCase: clearLogsUseCase
+) : ViewModel() {
+
     val logs: Flow<List<notificationLogs>> = getLogs()
-    fun clearLogs(){
+
+    fun clearLogs() {
         viewModelScope.launch {
-            clearLogs.invoke()
+            clearLogsUseCase.invoke()
         }
     }
 }

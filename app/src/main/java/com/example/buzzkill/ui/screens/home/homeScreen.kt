@@ -100,13 +100,13 @@ fun homeScreen(
                 .padding(padding)
         ){
             when(val state = uiState){
-                is homeUiState.loading -> {
+                is homeUiState.Loading -> {
                     CircularProgressIndicator(
                         modifier = Modifier.align(Alignment.Center)
                     )
                 }
 
-                is homeUiState.empty -> {
+                is homeUiState.Empty -> {
                     emptyState(modifier = Modifier.align(Alignment.Center))
                 }
 

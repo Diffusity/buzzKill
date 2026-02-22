@@ -7,7 +7,7 @@ import com.example.buzzkill.domain.model.notificationLogs
 import com.example.buzzkill.domain.usecase.addNotificationLogUseCase
 import com.example.buzzkill.domain.usecase.matchRuleUseCase
 import dagger.hilt.android.AndroidEntryPoint
-import jakarta.inject.Inject
+import javax.inject.Inject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
