@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.buzzkill.ui.screens.home.homeScreen
 
 sealed class screen(val route: String){
     object home: screen("home")
@@ -32,9 +33,9 @@ fun navGraph(navController: NavHostController = rememberNavController()){
     ){
         composable(screen.home.route) {
             homeScreen(
-                onAddRule = { navController.navigate(screen.rulebuilder.createRoute()) }
-                onEditRule = { ruleId -> navController.navigate(screen.rulebuilder.createRoute(ruleId)) }
-                onOpenHistory = { navController.navigate(screen.history.route) }
+                onAddRule = { navController.navigate(screen.rulebuilder.createRoute()) },
+                onEditRule = { ruleId -> navController.navigate(screen.rulebuilder.createRoute(ruleId)) },
+                onOpenHistory = { navController.navigate(screen.history.route) },
                 onOpenSettings = { navController.navigate((screen.setting.route)) }
             )
         }
